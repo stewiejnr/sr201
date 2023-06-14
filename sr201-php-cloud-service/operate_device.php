@@ -12,7 +12,7 @@ if($current == FALSE)
   http_response_code(400);
   echo json_encode(array('code' => 'NONEXISTENT'));
 }
-elseif($current == "\"A\"")
+elseif(!preg_match('/^["A"]{3}/', $current))
 {
   http_response_code(500);
   echo json_encode(array('code' => 'NOTREADY'));
