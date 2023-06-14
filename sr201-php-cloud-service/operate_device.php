@@ -12,7 +12,7 @@ if($current == FALSE)
   http_response(400);
   echo json_encode({'code': 'NONEXISTENT'});
 }
-else if($current == "\"A\"")
+elseif($current == "\"A\"")
 {
   http_response_code(500);
   echo json_encode({'code': 'NOTREADY'});
