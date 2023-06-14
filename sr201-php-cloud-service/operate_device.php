@@ -9,7 +9,7 @@ $current = file_get_contents($file);
 if($current == FALSE)
 {
   //device not registered
-  //http_response(400);
+  http_response(400);
   echo json_encode(array('code' => 'NONEXISTENT'));
 }
 elseif($current == "\"A\"")
@@ -22,22 +22,25 @@ elseif($_POST['operation']=="Operate")
   $action="\"A" . $_POST['action'] .  $_POST['channel'] . $_POST['timeout']."\"";
   //Write the action to the file
   $file_write_result = file_put_contents($file, $action);
-  if($file_write_result != FALSE {
+  if($file_write_result != FALSE) {
     sleep(4);
     $file_read_result = file_get_contents('./devices/' . $device . "_sta");
     if($file_read_result == "\"A\"")
     {
+      http_response(200);
       echo json_encode(array('code' => 'PROCESSED'));
     }
     else {
+      http_response(500);
       echo json_encode(array('code' => 'NOTPROCESSED'));
     }
   }
   else {
-    echo json_encode({array('code' => 'CMDNOTSENT'));
+    http_response(500);
+    echo json_encode(array('code' => 'CMDNOTSENT'));
   }
   
-  
+  http_response(500);
   echo json_encode(array('code'=> 'PROCESSED'));
 } 
 else 
