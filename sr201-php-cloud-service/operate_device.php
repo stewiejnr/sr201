@@ -9,7 +9,7 @@ $current = file_get_contents($file);
 if($current == FALSE)
 {
   //device not registered
-  http_response(400);
+  http_response_code(400);
   echo json_encode(array('code' => 'NONEXISTENT'));
 }
 elseif($current == "\"A\"")
@@ -27,20 +27,20 @@ elseif($_POST['operation']=="Operate")
     $file_read_result = file_get_contents('./devices/' . $device . "_sta");
     if($file_read_result == "\"A\"")
     {
-      http_response(200);
+      http_response_code(200);
       echo json_encode(array('code' => 'PROCESSED'));
     }
     else {
-      http_response(500);
+      http_response_code(500);
       echo json_encode(array('code' => 'NOTPROCESSED'));
     }
   }
   else {
-    http_response(500);
+    http_response_code(500);
     echo json_encode(array('code' => 'CMDNOTSENT'));
   }
   
-  http_response(500);
+  http_response_code(500);
   echo json_encode(array('code'=> 'PROCESSED'));
 } 
 else 
