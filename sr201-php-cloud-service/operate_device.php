@@ -24,7 +24,7 @@ elseif($_POST['operation']=="Operate")
   $file_write_result = file_put_contents($file, $action);
   if($file_write_result != FALSE) {
     sleep(4);
-    $file_read_result = file_get_contents('./devices/' . $device . "_sta");
+    $file_read_result = file_get_contents('./devices/' . $device . "_cmd");
     if($file_read_result == "\"A\"")
     {
       http_response_code(200);
@@ -40,8 +40,6 @@ elseif($_POST['operation']=="Operate")
     echo json_encode(array('code' => 'CMDNOTSENT'));
   }
   
-  http_response_code(500);
-  echo json_encode(array('code'=> 'PROCESSED'));
 } 
 else 
 {
