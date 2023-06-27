@@ -23,7 +23,7 @@ elseif($_POST['operation']=="Operate")
   //Write the action to the file
   $file_write_result = file_put_contents($file, $action);
   if($file_write_result != FALSE) {
-    sleep(4);
+    sleep(2);
     $file_read_result = file_get_contents('./devices/' . $device . "_cmd");
     if($file_read_result == "\"A\"")
     {
